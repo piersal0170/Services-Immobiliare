@@ -36,7 +36,7 @@ public class ImmobileController{
         ImmobileDTO immobileDTO = new ImmobileDTO(piano, n_stanze, categoria, classe_energetica, ascensore, portineria, posto_auto,
                     accesso_disabili, balcone, terrazzo, giardino, clima, riscaldamento);
         ArrayList<ImmobileDTO> immobileDTOList = selectImmobili(immobileDTO, p_max, p_min, comune); //metodo che va ancora scritto all'interno della classe Service per la ricerca degli immobili
-        if(!(immobileDTOList.isEmpty())){
+        if(!immobileDTOList.isEmpty()){
             return new ResponseEntity<>(immobileDTOList, HttpStatus.OK);
         } else{
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
