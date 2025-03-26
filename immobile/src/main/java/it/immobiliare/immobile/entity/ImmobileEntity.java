@@ -18,7 +18,7 @@ import lombok.Setter;
 public class ImmobileEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_immobile;
 
     @NotEmpty(message = "Inserisci un indirizzo")
@@ -43,8 +43,7 @@ public class ImmobileEntity {
 
     @NotEmpty(message = "Questo campo non può essere vuoto")
     @Column(nullable = false)
-    @Enumerated(EnumType.STRING)
-    private TipoImmobile tipoImmobile;
+    private String categoria;
 
     @NotEmpty(message = "Questo campo non può essere vuoto")
     @Column(nullable = false)
@@ -102,11 +101,5 @@ public class ImmobileEntity {
 
     @Column(nullable = false)
     private boolean trasporti;
-
-/* ****************************************************************************************************************** */
-
-    private enum TipoImmobile {
-        vendita, affitto
-    }
 
 }
