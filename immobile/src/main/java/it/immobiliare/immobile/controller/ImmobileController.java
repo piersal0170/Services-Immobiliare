@@ -2,7 +2,9 @@ package it.immobiliare.immobile.controller;
 
 
 import it.immobiliare.immobile.dto.ImmobileDTO;
+import it.immobiliare.immobile.service.ImmobileService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +16,10 @@ import java.util.List;
 @RestController
 @RequestMapping("/apiImmobile")
 public class ImmobileController{
+
+    @Autowired
+    private ImmobileService immobileService;
+
     @GetMapping("/cerca/{comune}")
     public ResponseEntity<ArrayList<ImmobileDTO>> cercaImmobili(
             @PathVariable String comune,
@@ -35,7 +41,7 @@ public class ImmobileController{
     ) {
         ImmobileDTO immobileDTO = new ImmobileDTO(piano, n_stanze, categoria, classe_energetica, ascensore, portineria, posto_auto,
                     accesso_disabili, balcone, terrazzo, giardino, clima, riscaldamento);
-        ArrayList<ImmobileDTO> immobileDTOList = selectImmobili(immobileDTO, p_max, p_min, comune); //metodo che va ancora scritto all'interno della classe Service per la ricerca degli immobili
+        ArrayList<ImmobileDTO> immobileDTOList = immobileService.selectImmobili(immobileDTO, p_max, p_min, comune);
         if(!immobileDTOList.isEmpty()){
             return new ResponseEntity<>(immobileDTOList, HttpStatus.OK);
         } else{
@@ -66,18 +72,18 @@ public class ImmobileController{
         ImmobileDTO immobileDTO = new ImmobileDTO(indirizzo, prezzo, piano, dimensioni, n_stanze, categoria,
                 classe_energetica, ascensore, portineria, balcone, terrazzo, giardino, clima, riscaldamento,
                 posto_auto, accesso_disabili, descrizione);
-        boolean immobileInserito = insertImmobile(immobileDTO);
+        boolean immobileInserito = immobileService.insertImmobile(immobileDTO);
         if (immobileInserito) {
             return new ResponseEntity<>(true, HttpStatus.OK);
         } else {
-            return new ResponseEntity<>(false, HttpStatus.OK);
+            return new ResponseEntity<>(false, HttpStatus.BAD_REQUEST);
         }
 
     }
 
     @GetMapping("/immobiliAgente/{mail}")
     public ResponseEntity<List<ImmobileDTO>> getImmobiliAgente(@PathVariable String mail) {
-            ArrayList<ImmobileDTO> immobiliDTOList = selectImmobili(mail);
+            ArrayList<ImmobileDTO> immobiliDTOList = immobileService.visualizzaStatistiche(mail);
             if(!immobiliDTOList.isEmpty()) {
                 return new ResponseEntity<>(immobiliDTOList, HttpStatus.OK);
             } else{
