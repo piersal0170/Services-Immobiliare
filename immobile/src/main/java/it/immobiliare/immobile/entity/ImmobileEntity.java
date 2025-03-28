@@ -29,7 +29,6 @@ public class ImmobileEntity {
     @Max(value = 1000000, message = "Il prezzo massimo deve essere massimo 1.000.000")
     private int prezzo;
 
-    @NotEmpty(message = "Questo campo non può essere vuoto")
     @Column(nullable = false)
     private int piano;
 
@@ -37,7 +36,7 @@ public class ImmobileEntity {
     @Max(value = 5000, message = "La dimensione massima consentita è 5000 metri quadri")
     private int dimensione;
 
-    @NotEmpty(message = "Questo campo non può essere vuoto")
+    @Positive(message = "Il numero deve essere positivo")
     @Column(nullable = false)
     private int n_stanze;
 
@@ -45,44 +44,34 @@ public class ImmobileEntity {
     @Column(nullable = false)
     private String categoria;
 
-    @NotEmpty(message = "Questo campo non può essere vuoto")
-    @Column(nullable = false)
+    @Column(columnDefinition = "char default 'c'", nullable = false)
     private char classe_energetica;
 
-    @NotEmpty(message = "Questo campo non può essere vuoto")
-    @Column(nullable = false)
+    @Column(columnDefinition = "boolean default false", nullable = false)
     private boolean ascensore;
 
-    @NotEmpty(message = "Questo campo non può essere vuoto")
-    @Column(nullable = false)
+    @Column(columnDefinition = "boolean default false", nullable = false)
     private boolean portineria;
 
-    @NotEmpty(message = "Questo campo non può essere vuoto")
-    @Column(nullable = false)
+    @Column(columnDefinition = "boolean default false", nullable = false)
     private boolean balcone;
 
-    @NotEmpty(message = "Questo campo non può essere vuoto")
-    @Column(nullable = false)
+    @Column(columnDefinition = "boolean default false", nullable = false)
     private boolean terrazzo;
 
-    @NotEmpty(message = "Questo campo non può essere vuoto")
-    @Column(nullable = false)
+    @Column(columnDefinition = "boolean default false", nullable = false)
     private boolean giardino;
 
-    @NotEmpty(message = "Questo campo non può essere vuoto")
-    @Column(nullable = false)
+    @Column(columnDefinition = "boolean default false", nullable = false)
     private boolean climatizzazione;
 
-    @NotEmpty(message = "Questo campo non può essere vuoto")
-    @Column(nullable = false)
+    @Column(columnDefinition = "boolean default false", nullable = false)
     private boolean riscaldamento;
 
-    @NotEmpty(message = "Questo campo non può essere vuoto")
-    @Column(nullable = false)
+    @Column(columnDefinition = "boolean default false", nullable = false)
     private boolean posto_auto;
 
-    @NotEmpty(message = "Questo campo non può essere vuoto")
-    @Column(nullable = false)
+    @Column(columnDefinition = "boolean default false", nullable = false)
     private boolean accesso_disabili;
 
     @NotEmpty(message = "Questo campo non può essere vuoto")
@@ -90,16 +79,16 @@ public class ImmobileEntity {
     @Size(min = 2, message = "La descrizione deve avere almeno 2 caratteri")
     private String descrizione;
 
-    @Column(columnDefinition = "int default 10", nullable = false)
+    @Column(columnDefinition = "int default 0", nullable = false)
     private int visualizzazioni;
 
-    @Column(nullable = false)
+    @Column(columnDefinition = "boolean default false", nullable = false)
     private boolean scuole;
 
-    @Column(nullable = false)
+    @Column(columnDefinition = "boolean default false", nullable = false)
     private boolean parchi;
 
-    @Column(nullable = false)
+    @Column(columnDefinition = "boolean default false", nullable = false)
     private boolean trasporti;
 
 }
