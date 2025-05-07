@@ -9,6 +9,8 @@ public class ImmobileMapper {
     public ImmobileEntity toEntity(ImmobileDTO immobileDTO) {
         ImmobileEntity immobileEntity = new ImmobileEntity();
         immobileEntity.setIndirizzo(immobileDTO.getIndirizzo());
+        immobileEntity.setComune(immobileDTO.getComune());
+        immobileEntity.setZona(immobileDTO.getZona());
         immobileEntity.setPrezzo(immobileDTO.getPrezzo());
         immobileEntity.setPiano(immobileDTO.getPiano());
         immobileEntity.setDimensione(immobileDTO.getDimensione());
@@ -32,6 +34,8 @@ public class ImmobileMapper {
     public ImmobileDTO toDto(ImmobileEntity immobileEntity) {
         ImmobileDTO immobileDTO = new ImmobileDTO();
         immobileDTO.setIndirizzo(immobileEntity.getIndirizzo());
+        immobileDTO.setComune(immobileEntity.getComune());
+        immobileDTO.setZona(immobileEntity.getZona());
         immobileDTO.setPrezzo(immobileEntity.getPrezzo());
         immobileDTO.setPiano(immobileEntity.getPiano());
         immobileDTO.setDimensione(immobileEntity.getDimensione());
@@ -51,6 +55,8 @@ public class ImmobileMapper {
         immobileDTO.setScuole(immobileEntity.isScuole());
         immobileDTO.setParchi(immobileEntity.isParchi());
         immobileDTO.setTrasporti(immobileEntity.isTrasporti());
+        immobileDTO.setVisualizzazioni(null);
+        immobileDTO.setMail(null);
 
         return immobileDTO;
     }
@@ -58,6 +64,8 @@ public class ImmobileMapper {
     public ImmobileDTO toDto_VisualizzaStatistiche(ImmobileEntity immobileEntity) {
         ImmobileDTO immobileDTO = new ImmobileDTO();
         immobileDTO.setIndirizzo(immobileEntity.getIndirizzo());
+        immobileDTO.setComune(immobileEntity.getComune());
+        immobileDTO.setZona(immobileEntity.getZona());
         immobileDTO.setPrezzo(immobileEntity.getPrezzo());
         immobileDTO.setVisualizzazioni(immobileEntity.getVisualizzazioni());
 

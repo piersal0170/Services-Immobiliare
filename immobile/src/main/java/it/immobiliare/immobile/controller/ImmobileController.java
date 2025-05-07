@@ -9,7 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -20,28 +19,10 @@ public class ImmobileController{
     @Autowired
     private ImmobileService immobileService;
 
-    @GetMapping("/cerca/{comune}")
-    public ResponseEntity<ArrayList<ImmobileDTO>> cercaImmobili(
-            @PathVariable String comune,
-            @RequestParam( value = "categoria", required = false) String categoria,
-            @RequestParam( value = "p_max", required = false) int p_max,
-            @RequestParam(value =  "p_min", required = false) int p_min,
-            @RequestParam(value = "n_stanze", required = false) int n_stanze,
-            @RequestParam( value = "piano", required = false) int piano,
-            @RequestParam( value = "classe_energetica", required = false) char classe_energetica,
-            @RequestParam( value = "posto_auto", required = false, defaultValue = "false") boolean posto_auto,
-            @RequestParam( value = "accesso_disabili", required = false, defaultValue = "false") boolean accesso_disabili,
-            @RequestParam( value = "clima", required = false, defaultValue = "false") boolean clima,
-            @RequestParam( value = "riscaldamento", required = false, defaultValue = "false") boolean riscaldamento,
-            @RequestParam( value = "ascensore", required = false, defaultValue = "false") boolean ascensore,
-            @RequestParam( value = "portineria", required = false, defaultValue = "false") boolean portineria,
-            @RequestParam( value = "balcone", required = false, defaultValue = "false") boolean balcone,
-            @RequestParam( value = "terrazzo", required = false, defaultValue = "false") boolean terrazzo,
-            @RequestParam( value = "giardino", required = false, defaultValue = "false") boolean giardino
-    ) {
-        ImmobileDTO immobileDTO = new ImmobileDTO(piano, n_stanze, categoria, classe_energetica, ascensore, portineria, posto_auto,
-                    accesso_disabili, balcone, terrazzo, giardino, clima, riscaldamento);
-        ArrayList<ImmobileDTO> immobileDTOList = immobileService.selectImmobili(immobileDTO, p_max, p_min, comune);
+    @PostMapping("/cerca/{comune}")
+    public ResponseEntity<List<ImmobileDTO>> cercaImmobili(@RequestBody ImmobileDTO immobileDTO, @PathVariable String comune,
+            @RequestParam( value = "p_max", required = false) int p_max,@RequestParam(value =  "p_min", required = false) int p_min) {
+        List<ImmobileDTO> immobileDTOList = immobileService.selectImmobili(immobileDTO, comune, p_max, p_min);
         if(!immobileDTOList.isEmpty()){
             return new ResponseEntity<>(immobileDTOList, HttpStatus.OK);
         } else{
@@ -49,29 +30,8 @@ public class ImmobileController{
         }
     }
 
-    @PostMapping("/carica/{indirizzo}/{prezzo}/{piano}/{dimensioni}/{n_stanze}/{cl_ener}/{categoria}/{descrizione}")
-    public ResponseEntity<Boolean> caricaImmobile(
-            @PathVariable String indirizzo,
-            @PathVariable int prezzo,
-            @PathVariable int piano,
-            @PathVariable int dimensioni,
-            @PathVariable int n_stanze,
-            @PathVariable("cl_ener") char classe_energetica,
-            @PathVariable String categoria,
-            @PathVariable String descrizione,
-            @RequestParam( value = "posto_auto", required = false, defaultValue = "false") boolean posto_auto,
-            @RequestParam( value = "accesso_disabili", required = false, defaultValue = "false") boolean accesso_disabili,
-            @RequestParam( value = "clima", required = false, defaultValue = "false") boolean clima,
-            @RequestParam( value = "riscaldamento", required = false, defaultValue = "false") boolean riscaldamento,
-            @RequestParam( value = "ascensore", required = false, defaultValue = "false") boolean ascensore,
-            @RequestParam( value = "portineria", required = false, defaultValue = "false") boolean portineria,
-            @RequestParam( value = "balcone", required = false, defaultValue = "false") boolean balcone,
-            @RequestParam( value = "terrazzo", required = false, defaultValue = "false") boolean terrazzo,
-            @RequestParam( value = "giardino", required = false, defaultValue = "false") boolean giardino
-            ) {
-        ImmobileDTO immobileDTO = new ImmobileDTO(indirizzo, prezzo, piano, dimensioni, n_stanze, categoria,
-                classe_energetica, ascensore, portineria, balcone, terrazzo, giardino, clima, riscaldamento,
-                posto_auto, accesso_disabili, descrizione);
+    @PostMapping("/carica")
+    public ResponseEntity<Boolean> caricaImmobile(@RequestBody ImmobileDTO immobileDTO) {
         boolean immobileInserito = immobileService.insertImmobile(immobileDTO);
         if (immobileInserito) {
             return new ResponseEntity<>(true, HttpStatus.OK);
@@ -83,7 +43,7 @@ public class ImmobileController{
 
     @GetMapping("/immobiliAgente/{mail}")
     public ResponseEntity<List<ImmobileDTO>> getImmobiliAgente(@PathVariable String mail) {
-            ArrayList<ImmobileDTO> immobiliDTOList = immobileService.visualizzaStatistiche(mail);
+            List<ImmobileDTO> immobiliDTOList = immobileService.visualizzaStatistiche(mail);
             if(!immobiliDTOList.isEmpty()) {
                 return new ResponseEntity<>(immobiliDTOList, HttpStatus.OK);
             } else{

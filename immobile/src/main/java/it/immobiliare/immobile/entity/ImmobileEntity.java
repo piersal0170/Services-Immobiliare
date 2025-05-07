@@ -25,6 +25,14 @@ public class ImmobileEntity {
     @Column(nullable = false)
     private String indirizzo;
 
+    @NotEmpty(message = "Inserisci un comune")
+    @Column(nullable = false)
+    private String comune;
+
+    @NotEmpty(message = "Inserisci un comune")
+    @Column(nullable = false)
+    private String zona;
+
     @Min(value = 400, message = "Il prezzo minimo deve essere almeno 400")
     @Max(value = 1000000, message = "Il prezzo massimo deve essere massimo 1.000.000")
     private int prezzo;
@@ -80,7 +88,7 @@ public class ImmobileEntity {
     private String descrizione;
 
     @Column(columnDefinition = "int default 0", nullable = false)
-    private int visualizzazioni;
+    private Integer visualizzazioni;
 
     @Column(columnDefinition = "boolean default false", nullable = false)
     private boolean scuole;
@@ -91,4 +99,6 @@ public class ImmobileEntity {
     @Column(columnDefinition = "boolean default false", nullable = false)
     private boolean trasporti;
 
+    @Column(columnDefinition = "varchar(255) default 'stringa'", nullable = false)
+    private String mail;
 }
