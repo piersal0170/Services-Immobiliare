@@ -10,34 +10,33 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ImmobileDTO {
     private String indirizzo;
     private String comune;
     private String zona;
-    private int prezzo;
-    private int piano;
-    private int dimensione;
-    private int n_stanze;
+    private Integer prezzo;
+    private Integer piano;
+    private Integer dimensione;
+    private Integer n_stanze;
     private String categoria;
-    private char classe_energetica;
-    private boolean ascensore;
-    private boolean portineria;
-    private boolean balcone;
-    private boolean terrazzo;
-    private boolean giardino;
-    private boolean climatizzazione;
-    private boolean riscaldamento;
-    private boolean posto_auto;
-    private boolean accesso_disabili;
+    private Character classe_energetica;
+    private Boolean ascensore;
+    private Boolean portineria;
+    private Boolean balcone;
+    private Boolean terrazzo;
+    private Boolean giardino;
+    private Boolean climatizzazione;
+    private Boolean riscaldamento;
+    private Boolean posto_auto;
+    private Boolean accesso_disabili;
     private String descrizione;
 
-    @JsonInclude(JsonInclude.Include.NON_NULL)
     private Integer visualizzazioni;
 
-    private boolean scuole;
-    private boolean parchi;
-    private boolean trasporti;
+    private Boolean scuole;
+    private Boolean parchi;
+    private Boolean trasporti;
 
-    @JsonInclude(JsonInclude.Include.NON_NULL)
     private String mail;
 }
