@@ -17,15 +17,43 @@ public class ImmobileMapper {
         immobileEntity.setN_stanze(immobileDTO.getN_stanze());
         immobileEntity.setCategoria(immobileDTO.getCategoria());
         immobileEntity.setClasse_energetica(immobileDTO.getClasse_energetica());
-        immobileEntity.setAscensore(immobileDTO.isAscensore());
-        immobileEntity.setPortineria(immobileDTO.isPortineria());
-        immobileEntity.setBalcone(immobileDTO.isBalcone());
-        immobileEntity.setTerrazzo(immobileDTO.isTerrazzo());
-        immobileEntity.setGiardino(immobileDTO.isGiardino());
-        immobileEntity.setClimatizzazione(immobileDTO.isClimatizzazione());
-        immobileEntity.setRiscaldamento(immobileDTO.isRiscaldamento());
-        immobileEntity.setPosto_auto(immobileDTO.isPosto_auto());
-        immobileEntity.setAccesso_disabili(immobileDTO.isAccesso_disabili());
+
+        if(immobileDTO.getAscensore() != null){
+            immobileEntity.setAscensore(true);
+        }
+
+        if(immobileDTO.getPortineria() != null){
+            immobileEntity.setPortineria(true);
+        }
+
+        if(immobileDTO.getBalcone() != null){
+            immobileEntity.setBalcone(true);
+        }
+
+        if(immobileDTO.getTerrazzo() != null){
+            immobileEntity.setTerrazzo(true);
+        }
+
+        if(immobileDTO.getGiardino() != null){
+            immobileEntity.setGiardino(true);
+        }
+
+        if(immobileDTO.getClimatizzazione() != null){
+            immobileEntity.setClimatizzazione(true);
+        }
+
+        if(immobileDTO.getRiscaldamento() != null){
+            immobileEntity.setRiscaldamento(true);
+        }
+
+        if(immobileDTO.getPosto_auto() != null){
+            immobileEntity.setPosto_auto(true);
+        }
+
+        if(immobileDTO.getAccesso_disabili() != null){
+            immobileEntity.setAccesso_disabili(true);
+        }
+
         immobileEntity.setDescrizione(immobileDTO.getDescrizione());
 
         return immobileEntity;
@@ -55,8 +83,6 @@ public class ImmobileMapper {
         immobileDTO.setScuole(immobileEntity.isScuole());
         immobileDTO.setParchi(immobileEntity.isParchi());
         immobileDTO.setTrasporti(immobileEntity.isTrasporti());
-        immobileDTO.setVisualizzazioni(null);
-        immobileDTO.setMail(null);
 
         return immobileDTO;
     }
