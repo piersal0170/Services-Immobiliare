@@ -2,11 +2,14 @@ package it.immobiliare.immobile;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 
-
+@ComponentScan("it.immobiliare.immobile.mapper")
 @SpringBootApplication
 public class ImmobileApplication {
 
-	public static void main(String[] args) {SpringApplication.run(ImmobileApplication.class, args);}
+    public static void main(String[] args) {
+        SpringApplication.run(ImmobileApplication.class, args);
+    }
 
 }

@@ -44,15 +44,15 @@ public class ImmobileService {
                     .and(ImmobileSpecifications.hasN_Stanze(immobileDTO.getN_stanze()))
                     .and(ImmobileSpecifications.hasCategoria(immobileDTO.getCategoria()))
                     .and(ImmobileSpecifications.hasClasseEnergetica(immobileDTO.getClasse_energetica()))
-                    .and(ImmobileSpecifications.hasAscensore(immobileDTO.isAscensore()))
-                    .and(ImmobileSpecifications.hasPortineria(immobileDTO.isPortineria()))
-                    .and(ImmobileSpecifications.hasBalcone(immobileDTO.isBalcone()))
-                    .and(ImmobileSpecifications.hasTerrazzo(immobileDTO.isTerrazzo()))
-                    .and(ImmobileSpecifications.hasGiardino(immobileDTO.isGiardino()))
-                    .and(ImmobileSpecifications.hasClimatizzazione(immobileDTO.isClimatizzazione()))
-                    .and(ImmobileSpecifications.hasRiscaldamento(immobileDTO.isRiscaldamento()))
-                    .and(ImmobileSpecifications.hasPostoAuto(immobileDTO.isPosto_auto()))
-                    .and(ImmobileSpecifications.hasAccessoDisabili(immobileDTO.isAccesso_disabili()));
+                    .and(ImmobileSpecifications.hasAscensore(immobileDTO.getAscensore()))
+                    .and(ImmobileSpecifications.hasPortineria(immobileDTO.getPortineria()))
+                    .and(ImmobileSpecifications.hasBalcone(immobileDTO.getBalcone()))
+                    .and(ImmobileSpecifications.hasTerrazzo(immobileDTO.getTerrazzo()))
+                    .and(ImmobileSpecifications.hasGiardino(immobileDTO.getGiardino()))
+                    .and(ImmobileSpecifications.hasClimatizzazione(immobileDTO.getClimatizzazione()))
+                    .and(ImmobileSpecifications.hasRiscaldamento(immobileDTO.getRiscaldamento()))
+                    .and(ImmobileSpecifications.hasPostoAuto(immobileDTO.getPosto_auto()))
+                    .and(ImmobileSpecifications.hasAccessoDisabili(immobileDTO.getAccesso_disabili()));
             List<ImmobileEntity> immobileList = immobileRepository.findAll(spec);
             List<ImmobileDTO> immobileDTOList = new ArrayList<>();
             for (ImmobileEntity immobileEntity : immobileList) {
@@ -68,7 +68,17 @@ public class ImmobileService {
     }
 
     public List<ImmobileDTO> visualizzaStatistiche(String mail) {
-        List<ImmobileDTO> immobileDTOs = null;
-        return immobileDTOs;
+        try{
+            List<ImmobileEntity> immobileEntityList = immobileRepository.findAllByMail(mail);
+            List<ImmobileDTO> immobileDTOList = new ArrayList<>();
+            for (ImmobileEntity immobileEntity : immobileEntityList) {
+                ImmobileDTO immobileDTO1 = immobileMapper.toDto_VisualizzaStatistiche(immobileEntity);
+                immobileDTOList.add(immobileDTO1);
+            }
+            return immobileDTOList;
+        } catch (RuntimeException e) {
+            log.warn("Errore nella ricerca degli immobili: {}", e.getMessage());
+            return null;
+        }
     }
 }

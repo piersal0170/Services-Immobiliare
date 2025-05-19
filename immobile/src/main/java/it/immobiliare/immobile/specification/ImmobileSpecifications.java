@@ -28,14 +28,14 @@ public class ImmobileSpecifications {
         };
     }
 
-    public static Specification<ImmobileEntity> hasPiano(int piano) {
+    public static Specification<ImmobileEntity> hasPiano(Integer piano) {
         return (root, query, criteriaBuilder) ->
-                piano != 0 ? criteriaBuilder.equal(root.get("piano"), piano) : null;
+                piano != null ? criteriaBuilder.equal(root.get("piano"), piano) : null;
     }
 
-    public static Specification<ImmobileEntity> hasN_Stanze(int n_stanze) {
+    public static Specification<ImmobileEntity> hasN_Stanze(Integer n_stanze) {
         return (root, query, criteriaBuilder) ->
-                n_stanze != 0 ? criteriaBuilder.equal(root.get("n_stanze"), n_stanze) : null;
+                n_stanze != null ? criteriaBuilder.equal(root.get("n_stanze"), n_stanze) : null;
     }
 
     public static Specification<ImmobileEntity> hasCategoria(String categoria) {
@@ -43,54 +43,54 @@ public class ImmobileSpecifications {
                 categoria != null ? criteriaBuilder.equal(root.get("categoria"), categoria) : null;
     }
 
-    public static Specification<ImmobileEntity> hasClasseEnergetica(char cl_ener) {
+    public static Specification<ImmobileEntity> hasClasseEnergetica(Character cl_ener) {
         return (root, query, criteriaBuilder) ->
-                cl_ener != '\u0000' ? criteriaBuilder.equal(root.get("classe_energetica"), cl_ener) : null;
+                cl_ener != null ? criteriaBuilder.equal(root.get("classe_energetica"), cl_ener) : null;
     }
 
-    public static Specification<ImmobileEntity> hasAscensore(boolean ascensore) {
+    public static Specification<ImmobileEntity> hasAscensore(Boolean ascensore) {
         return (root, query, criteriaBuilder) ->
-                ascensore ? criteriaBuilder.equal(root.get("ascensore"), ascensore) : null;
+                ascensore != null ? criteriaBuilder.equal(root.get("ascensore"), ascensore) : null;
     }
 
-    public static Specification<ImmobileEntity> hasPortineria(boolean portineria) {
+    public static Specification<ImmobileEntity> hasPortineria(Boolean portineria) {
         return (root, query, criteriaBuilder) ->
-                portineria ? criteriaBuilder.equal(root.get("portineria"), portineria) : null;
+                portineria != null ? criteriaBuilder.equal(root.get("portineria"), portineria) : null;
     }
 
-    public static Specification<ImmobileEntity> hasBalcone(boolean balcone) {
+    public static Specification<ImmobileEntity> hasBalcone(Boolean balcone) {
         return (root, query, criteriaBuilder) ->
-                balcone ? criteriaBuilder.equal(root.get("balcone"), balcone) : null;
+                balcone != null ? criteriaBuilder.equal(root.get("balcone"), balcone) : null;
     }
 
-    public static Specification<ImmobileEntity> hasTerrazzo(boolean terrazzo) {
+    public static Specification<ImmobileEntity> hasTerrazzo(Boolean terrazzo) {
         return (root, query, criteriaBuilder) ->
-                terrazzo ? criteriaBuilder.equal(root.get("terrazzo"), terrazzo) : null;
+                terrazzo != null ? criteriaBuilder.equal(root.get("terrazzo"), terrazzo) : null;
     }
 
-    public static Specification<ImmobileEntity> hasGiardino(boolean giardino) {
+    public static Specification<ImmobileEntity> hasGiardino(Boolean giardino) {
         return (root, query, criteriaBuilder) ->
-                giardino ? criteriaBuilder.equal(root.get("giardino"), giardino) : null;
+                giardino != null ? criteriaBuilder.equal(root.get("giardino"), giardino) : null;
     }
 
-    public static Specification<ImmobileEntity> hasClimatizzazione(boolean climatizzazione) {
+    public static Specification<ImmobileEntity> hasClimatizzazione(Boolean climatizzazione) {
         return (root, query, criteriaBuilder) ->
-                climatizzazione ? criteriaBuilder.equal(root.get("climatizzazione"), climatizzazione) : null;
+                climatizzazione != null ? criteriaBuilder.equal(root.get("climatizzazione"), climatizzazione) : null;
     }
 
-    public static Specification<ImmobileEntity> hasRiscaldamento(boolean riscaldamento) {
+    public static Specification<ImmobileEntity> hasRiscaldamento(Boolean riscaldamento) {
         return (root, query, criteriaBuilder) ->
-                riscaldamento ? criteriaBuilder.equal(root.get("riscaldamento"), riscaldamento) : null;
+                riscaldamento != null ? criteriaBuilder.equal(root.get("riscaldamento"), riscaldamento) : null;
     }
 
-    public static Specification<ImmobileEntity> hasPostoAuto(boolean posto_auto) {
+    public static Specification<ImmobileEntity> hasPostoAuto(Boolean posto_auto) {
         return (root, query, criteriaBuilder) ->
-                posto_auto ? criteriaBuilder.equal(root.get("posto_auto"), posto_auto) : null;
+                posto_auto != null ? criteriaBuilder.equal(root.get("posto_auto"), posto_auto) : null;
     }
 
-    public static Specification<ImmobileEntity> hasAccessoDisabili(boolean accesso_disabili) {
+    public static Specification<ImmobileEntity> hasAccessoDisabili(Boolean accesso_disabili) {
         return (root, query, criteriaBuilder) ->
-                accesso_disabili ? criteriaBuilder.equal(root.get("accesso_disabili"), accesso_disabili) : null;
+                accesso_disabili != null ? criteriaBuilder.equal(root.get("accesso_disabili"), accesso_disabili) : null;
     }
 
 }
